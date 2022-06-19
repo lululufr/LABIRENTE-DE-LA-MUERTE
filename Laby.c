@@ -24,7 +24,7 @@ void play1();
 int is_validcreation();
 int is_finishcreation();
 char yourLabyrinth[HAUTEUR1][LARGEUR1];
-
+int yoursSet=0;
 
 void clearTerminal() {
     printf("\033[2J");
@@ -93,7 +93,7 @@ void levelChoice(){
             playYours();
             break;
         default :
-            printf("Merci de choisir l'un des choix du menu : \n 1 ->jouer 2 ->regles 3 ->quitter\n");
+            printf("Merci de choisir l'un des choix du menu : \n 1 ->jouer 2-creer 3 ->regles 4 ->quitter\n");
             levelChoice();
         break;
     };
@@ -121,7 +121,7 @@ void play3() {
     
      
     chronoDebut = time(NULL);
-    printf("Debut du chrono = %ld\n ", chronoDebut);
+   
 
 
     char grille[HAUTEUR3][LARGEUR3] = {
@@ -318,7 +318,7 @@ int is_validcreation(int x, int y, int hauteur, int largeur, char grille[hauteur
 }
 
 int is_finishcreation(int x, int y, int hauteur, int largeur, char grille[hauteur][largeur]) {
-    if (y==hauteur-1){ // 
+    if (y==hauteur-2){ // 
         return 1;
     }
     return 0;
@@ -389,7 +389,7 @@ void createLaby() {
         }
         printf("\n");
     }
-    
+    menu();
 }
 
 
@@ -439,6 +439,7 @@ void playYours(){
     
     printf("Vous avez mis  %ld", chronoFin - chronoDebut);
     printf(" secondes a finir le Labyrinthe");
+    levelChoice();
 }
 
 
