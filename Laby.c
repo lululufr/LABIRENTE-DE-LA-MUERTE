@@ -12,8 +12,6 @@
 
 
 void clearTerminal();
-//void playAgain;
-//char menu[] = "1 ->jouer 2 ->regles 3 ->quitter\n";
 int is_valid();
 int is_finish();
 void levelChoice();
@@ -26,62 +24,9 @@ void play1();
 
 
 
-
-
-/*
-void play(int difficulty) {
-    
-    switch (difficulty) {
-    case 1:
-        start(1);
-        break;
-    case 2:
-        start(2);
-        break;
-    case 3:
-        start(3);
-        break;
-    default:
-        levelChoice();
-        break;
-    }
-}
-
-int chrono(int truc){
-    time_t chronoDebut;
-    char test;
-    
-     
-    chronoDebut = time(NULL);
-    printf("Debut du chrono = %ld\n ", chronoDebut);
-    
-    //laby a la place
-        //truc;
-    //laby a la place
-     
-    time_t chronoFin;
-    
-    chronoFin = time(NULL);
-    
-    printf("Fin du chrono :  %ld\n ", chronoFin);
-    
-    printf("Temps total en seconde :  %ld\n ", chronoFin - chronoDebut);
-    
-    return(0);
-}
-*/
-
-
-
 void clearTerminal() {
     printf("\033[2J");
 }
-
-
-
-
-
-
 
 
 void levelChoice(){
@@ -97,28 +42,15 @@ void levelChoice(){
     switch(difficulty) {
         
         case 1:
-            play1();
-            if (playAgain()) {
-                levelChoice();
-            }else{
-                exit(EXIT_SUCCESS);
-            }
+            playAgain();
             break;
         case 2:
-           play2();
-            if (playAgain()) {
-                levelChoice();
-            }else{
-                exit(EXIT_SUCCESS);
-            }
+           playAgain();
            break;
          case 3:
-            play3();
-             if (playAgain()) {
-                levelChoice();
-            }else{
-                exit(EXIT_SUCCESS);
-            }
+          
+             playAgain();
+          
             break;
         default :
             printf("Merci de choisir l'un des choix du menu : \n 1 ->jouer 2 ->regles 3 ->quitter\n");
@@ -226,9 +158,7 @@ void play3() {
     refresh();
     endwin();
     refresh();
-    if(is_finish(x,y,HAUTEUR3, LARGEUR3, grille) ){
-        playAgain();
-    }
+ 
 }
 
 
@@ -278,9 +208,7 @@ void play2() {
     clrtoeol();
     refresh();
     endwin();
-    if (is_finish(x, y, HAUTEUR2, LARGEUR2, grille)){
-        playAgain();
-    }
+
 }
 void play1() {
     char grille[HAUTEUR1][LARGEUR1] = {
@@ -334,16 +262,20 @@ void play1() {
 
 int playAgain(){
     char choice;
-    printf("voulez vous rejouez ? o / n >>>>");
-    scanf("%c",&choice);
-        if (choice == 'o'){
-            return true;
-        }else if(choice =='n'){
-            return false;
-        }else{
+    
+        play2();
+
+        printf("voulez vous rejouez ? o / n \n >>>> ");
+        
+        scanf(" %c",&choice);
+        
+        if(choice == 'o' ||choice == 'O'){
             playAgain();
+            
+        }else{
+            menu();
         }
-}
+    }
 
 int main(){
     menu();
